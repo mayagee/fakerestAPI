@@ -41,9 +41,9 @@ public class RestAssuredFunctions {
                 .post(uri).then().extract().response();
     }
 
-    public static Response get(String uri) {
-        return given().contentType(ContentType.JSON).when()
-                .get(uri).then().extract().response();
+   public static Response get(String uri) {
+      return given().contentType(ContentType.JSON).when()
+             .get(uri).then().extract().response();
     }
 
     //filepath should target resources folder; example: "src/test/resources/approved.jpg"
@@ -54,10 +54,10 @@ public class RestAssuredFunctions {
                 .post(uri).then().extract().response();
     }
 
-    public static Response delete(String accessToken, String uri) {
-        return given().header(GlobalParams.AUTHORIZATION,  "Bearer " + accessToken).when()
-                .delete(uri).then().extract().response();
-    }
+   // public static Response delete(String accessToken) {
+     //   return given().header(GlobalParams.AUTHORIZATION,  "Bearer " + accessToken).when()
+     //           .delete(uri).then().extract().response();
+   // }
 
     public static Response delete(Object body, String accessToken, String uri) {
         String json = new GsonBuilder().setPrettyPrinting().create().toJson(body);
@@ -102,4 +102,14 @@ public class RestAssuredFunctions {
                 .when()
                 .get(uri).then().extract().response();
     }
+
+    public static Response post(String url, Object requestBody){
+        return given().contentType(ContentType.JSON).body(requestBody).post(url).then().extract().response();
+    }
+
+    public static Response delete(String uri){
+        return given().when().delete(uri).then().extract().response();
+    }
+
+
 }
