@@ -1,5 +1,8 @@
 package com.projectname.e2e.tests.pages.navigation.bar;
 
+import com.projectname.e2e.tests.pages.LoginPage;
+import com.projectname.e2e.tests.pages.SingUpPage;
+import com.projectname.e2e.tests.pages.UpdateUserPage;
 import com.projectname.e2e.tests.pages.common.PageBase;
 import com.projectname.e2e.tests.pages.navigation.bar.company.BlogPage;
 import com.projectname.e2e.tests.pages.navigation.bar.company.ProvidersPage;
@@ -221,5 +224,45 @@ public class NavigationBarPage extends PageBase {
     }
 
 
+    private WebElement getSingUpBtn() {
+        getCompanyBtn().click();
+        try {
+            return driver.findElement(CustomBy.xpath("//*[@id=\"loginSignup\"]/li[2]/a"));
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new AssertionError("Could not find singup button on  bar page", e);
+        }
+    }
+
+    public SingUpPage openSingUpPage() {
+   getSingUpBtn().click();
+        return new SingUpPage(driver, url, email, password);
+    }
+    private WebElement getLoginButton() {
+        try {
+            return driver.findElement(CustomBy.xpath("//*[@id=\"loginSignup\"]/li[1]/a"));
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new AssertionError("Could not find login button on Navigation bar page", e);
+        }
+    }
+
+    public LoginPage openLoginPage() {
+        getLoginButton().click();
+        return new LoginPage(driver, url, email, password);
+    }
+
+    private WebElement getClientAreaButton() {
+        try {
+            return driver.findElement(CustomBy.xpath("//nav/div/ol/li[2]/a"));
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new AssertionError("Could not find client area button on Account Update Page");
+        }
+    }
+    public UpdateUserPage openUpdateUserPage() {
+        getClientAreaButton().click();
+        return new UpdateUserPage(driver, url, email, password);
+    }
 }
 
