@@ -95,7 +95,6 @@ public class LoginPage extends PageBase {
         getPasswordInput().sendKeys(ConfigReader.getValue("USER_PASSWORD"));
 
 
-       // getCheckBox().click();
         getLoginButton().click();
 
         return new UserPage(driver, url, email, password);

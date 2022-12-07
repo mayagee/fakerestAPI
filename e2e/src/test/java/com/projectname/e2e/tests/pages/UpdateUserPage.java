@@ -29,12 +29,10 @@ public class UpdateUserPage extends PageBase {
             driver.switchTo().window(tabs.get(1));
             return this;
     }
-
     @Override
     public boolean isDisplayed() {
-        return CheckIfElement.isDisplayed(CustomBy.xpath("//*[@id=\"main-body\"]/div/div[1]/div[1]/div[1]/div/div[1]"),driver);
+        return CheckIfElement.isDisplayed(CustomBy.xpath("//*[@id=\"main-body\"]/div/div[1]/div[1]/div[1]/div/div[3]/a"),driver);
     }
-
 
     private WebElement getFirstName() {
         try {
@@ -87,14 +85,6 @@ public class UpdateUserPage extends PageBase {
     private WebElement getCityField() {
         try {
             return driver.findElement(CustomBy.id("inputCity"));
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new AssertionError("Could not find street address 2 field on Signup page", e);
-        }
-    }
-    private WebElement getStateField() {
-        try {
-            return driver.findElement(CustomBy.id("stateinput"));
         } catch (Exception e) {
             e.printStackTrace();
             throw new AssertionError("Could not find street address 2 field on Signup page", e);
@@ -234,9 +224,18 @@ public class UpdateUserPage extends PageBase {
         }
     }
 
-    public UpdateUserPage openUpdateUserPage() {
+    public UserPage openUserPage() {
         getClientAreaButton().click();
-        return new UpdateUserPage(driver, url, email, password);
+        return new UserPage(driver, url, email, password);
+    }
+
+    private WebElement getStateField() {
+        try {
+            return driver.findElement(CustomBy.id("stateinput"));
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new AssertionError("Could not find not a state field on Signup page", e);
+        }
     }
 
     private WebElement getSaveButton() {
@@ -247,6 +246,8 @@ public class UpdateUserPage extends PageBase {
             throw new AssertionError("Could not find save button on Signup page", e);
         }
     }
+
+
 
     public UpdateUserPage updateUserPage(UpdateUserRequest userRequest){
         getClientAreaButton().click();
@@ -264,60 +265,12 @@ public class UpdateUserPage extends PageBase {
         getCompany().sendKeys(userRequest.getCompany());
 
 
-        getEmailField().click();
-        getEmailField().clear();
-        getEmailField().sendKeys(userRequest.getEmail());
-
-        getCountryFromTheListOfCountries(userRequest.getCountry().getCountryNumberSelect()).click();
-
-        getInputPhoneField().click();
-        getInputPhoneField().clear();
-        getInputPhoneField().sendKeys(userRequest.getPhoneNumber());
-
-        getStreetAddressField().click();
-        getStreetAddressField().clear();
-        getStreetAddressField().sendKeys(userRequest.getAddress());
-
-        getStreetAddress2Field().click();
-        getStreetAddress2Field().clear();
-        getStreetAddress2Field().sendKeys(userRequest.getAddress2());
-
-        getCityField().click();
-        getCityField().clear();
-        getCityField().sendKeys(userRequest.getCity());
-
-        getStateField().click();
-        getStateField().clear();
-        getStateField().sendKeys(userRequest.getState());
-
-        getPostcodeField().click();
-        getPostcodeField().clear();
-        getPostcodeField().sendKeys(userRequest.getPostalCode());
-
-        selectCountry(userRequest.getCountry().getTwoLetterCountry());
-
-       selectPaymentMethode(userRequest.getPaymentMethode());
-
-
-        getInputPaymentMethodField().click();
-        getInputPaymentMethodField().clear();
-        getInputPaymentMethodField().sendKeys(userRequest.getPaymentMethode());
-
-        getInputBillingContactField().click();
-        getInputBillingContactField().clear();
-        getInputBillingContactField().sendKeys(userRequest.getDefaultBillingContact());
-
-
-        getMobileField().click();
-        getMobileField().clear();
-        getMobileField().sendKeys(userRequest.getMobile());
-
-
-
         getSaveButton().click();
 
         return new UpdateUserPage(driver, url, email, password);
     }
+
+
 
 
 

@@ -18,11 +18,6 @@ public class PhpTravelAssert {
         }
 
         this.softAssert.assertEquals(actualDetails.getFirstAndLastName(), expectedDetails.getFirstAndLastName(), "Name didn't match");
-//        this.softAssert.assertEquals(actualDetails.getAddress1(), expectedDetails.getAddress1(), "Address 1 didn't match");
-//        this.softAssert.assertEquals(actualDetails.getAddress2(), expectedDetails.getAddress2(), "Address 2 didn't match");
-//        this.softAssert.assertEquals(actualDetails.getCityStatePostalCode(), expectedDetails.getCityStatePostalCode(), "City didn't match");
-//        this.softAssert.assertEquals(actualDetails.getCountry(), expectedDetails.getCountry(), "country didn't match");
-
         this.softAssert.assertEquals(actualDetails.getAddress1(), expectedDetails.getFirstAndLastName() + "\n" + expectedDetails.getAddress1() + "\n"
                 + expectedDetails.getAddress2() + "\n" + expectedDetails.getCityStatePostalCode() + "\n" + expectedDetails.getCountry(), "Didn't match");
         this.softAssert.assertAll();
@@ -34,13 +29,8 @@ public class PhpTravelAssert {
         }
         this.softAssert.assertEquals(actualDetails.getCompany(), expectedDetails.getCompany(), "Company name did not match");
         this.softAssert.assertEquals(actualDetails.getFirstAndLastName(), expectedDetails.getFirstAndLastName(), "Name didn't match");
-       this.softAssert.assertEquals(actualDetails.getAddress1(), expectedDetails.getAddress1(), "Address 1 didn't match");
-       this.softAssert.assertEquals(actualDetails.getAddress2(), expectedDetails.getAddress2(), "Address 2 didn't match");
-        this.softAssert.assertEquals(actualDetails.getCityStatePostalCode(), expectedDetails.getCityStatePostalCode(), "City didn't match");
        this.softAssert.assertEquals(actualDetails.getCountry(), expectedDetails.getCountry(), "country didn't match");
 
-        //  this.softAssert.assertEquals(actualDetails.getAddress1(), expectedDetails.getFirstAndLastName() + "\n" + expectedDetails.getAddress1() + "\n"
-        //      + expectedDetails.getAddress2() + "\n" + expectedDetails.getCityStatePostalCode() + "\n" + expectedDetails.getCountry(), "Didn't match");
         this.softAssert.assertAll();
     }
 }

@@ -53,7 +53,7 @@ public class SingUpTests extends TestBase {
 
 
     UserPage userPage = new UserPage(getDriver(), "","","");
-    userPage.show();
+    userPage.isDisplayed();
 
     UserPageDetails actualUserDetails1 = userPage.getActualUserDetails();
 

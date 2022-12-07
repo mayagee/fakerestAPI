@@ -8,34 +8,13 @@ public class UserPageDetails {
     private String address2;
     private String cityStatePostalCode;
     private String country;
-
     private String Company;
+
+
     public UserPageDetails() {
 
     }
 
-    public static UserPageDetails parseExpectedUserDetails(RegisterUserRequest userRequest) {
-        UserPageDetails userPageDetails = new UserPageDetails();
-        userPageDetails.setFirstAndLastName(userRequest.getFirstName() + " " + userRequest.getLastName());
-        userPageDetails.setAddress1(userRequest.getAddress());
-        userPageDetails.setAddress2(userRequest.getAddress2());
-        userPageDetails.setCityStatePostalCode(userRequest.getCity() + ", " + userRequest.getState() + ", " + userRequest.getPostalCode());
-        userPageDetails.setCountry(userRequest.getCountry().getCountryName());
-
-        return userPageDetails;
-    }
-
-    public static UserPageDetails parseExpectedUpdatedUserDetails(UpdateUserRequest userRequest) {
-        UserPageDetails userPageDetails = new UserPageDetails();
-        userPageDetails.setCompany(userRequest.getCompany());
-        userPageDetails.setFirstAndLastName(userRequest.getFirstName() + " " + userRequest.getLastName());
-        userPageDetails.setAddress1(userRequest.getAddress());
-        userPageDetails.setAddress2(userRequest.getAddress2());
-        userPageDetails.setCityStatePostalCode(userRequest.getCity() + ", " + userRequest.getState() + ", " + userRequest.getPostalCode());
-
-
-        return userPageDetails;
-    }
 
     public String getCompany() {
         return Company;
@@ -44,18 +23,6 @@ public class UserPageDetails {
     public void setCompany(String company) {
         Company = company;
     }
-
-   // public static UserPageDetails parseExpectedUpdatedUserDetails(RegisterUserRequest userRequest) {
-    //    UserPageDetails userPageDetails = new UserPageDetails();
-      //  userPageDetails.setFirstAndLastName(userRequest.getFirstName() + " " + userRequest.getLastName());
-    //    userPageDetails.setAddress1(userRequest.getAddress());
-      //  userPageDetails.setAddress2(userRequest.getAddress2());
-     //   userPageDetails.setCityStatePostalCode(userRequest.getCity() + ", " + userRequest.getState() + ", " + userRequest.getPostalCode());
-      //  userPageDetails.setCompany(userRequest.getCompany());
-
-
-      //  return userPageDetails;
-   // }
 
     public String getFirstAndLastName() {
         return firstAndLastName;
@@ -96,6 +63,27 @@ public class UserPageDetails {
     public void setCountry(String country) {
         this.country = country;
     }
+
+    public static UserPageDetails parseExpectedUserDetails(RegisterUserRequest userRequest) {
+        UserPageDetails userPageDetails = new UserPageDetails();
+        userPageDetails.setFirstAndLastName(userRequest.getFirstName() + " " + userRequest.getLastName());
+        //userPageDetails.setAddress1(userRequest.getAddress());
+        //userPageDetails.setAddress2(userRequest.getAddress2());
+        //userPageDetails.setCityStatePostalCode(userRequest.getCity() + ", " + userRequest.getState() + ", " + userRequest.getPostalCode());
+        userPageDetails.setCountry(userRequest.getCountry().getCountryName());
+
+        return userPageDetails;
+    }
+
+    public static UserPageDetails parseExpectedUpdatedUserDetails(UpdateUserRequest userRequest) {
+        UserPageDetails userPageDetails = new UserPageDetails();
+        userPageDetails.setFirstAndLastName(userRequest.getFirstName() + " " + userRequest.getLastName());
+        userPageDetails.setCompany(userRequest.getCompany());
+
+
+        return userPageDetails;
+    }
+
 
 
 

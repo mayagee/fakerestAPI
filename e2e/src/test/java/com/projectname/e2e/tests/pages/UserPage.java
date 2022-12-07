@@ -14,8 +14,11 @@ public class UserPage extends PageBase {
 
     @Override
     public PageBase show() {
-        return null;
+        UpdateUserPage updateUserPage = new UpdateUserPage(driver, url, email, password);
+        updateUserPage.openUserPage().show();
+        return this;
     }
+
 
     @Override
     public boolean isDisplayed() {
@@ -67,9 +70,18 @@ public class UserPage extends PageBase {
         }
     }
 
+    private WebElement getCompany() {
+        try {
+            return driver.findElement(CustomBy.id("inputCompanyName"));
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new AssertionError("Could not find company on update User page", e);
+        }
+    }
+
     private WebElement getEmployeeCard() {
         try {
-            return driver.findElement(CustomBy.xpath("//*[@id=\"main-body\"]/div/div[1]/div[1]/div[1]/div/div[2]/div"));
+            return driver.findElement(CustomBy.xpath("//*[@id=\"main-body\"]/div/div[1]/div[1]/div/div/div[1]"));
         } catch (Exception e) {
             e.printStackTrace();
             throw new AssertionError("Could not find employee card on User page", e);
@@ -80,10 +92,8 @@ public class UserPage extends PageBase {
         UserPageDetails userPageDetails = new UserPageDetails();
 
         userPageDetails.setFirstAndLastName(getFirstAndLastName().getText());
-        userPageDetails.setAddress1(getEmployeeCard().getText());
-        userPageDetails.setAddress2(getAddress2().getText());
-        userPageDetails.setCityStatePostalCode(getCityStateAndPostcode().getText());
-        userPageDetails.setCountry(getCountry().getText());
+        userPageDetails.setCompany(getCompany().getText());
+
 
         return userPageDetails;
     }
